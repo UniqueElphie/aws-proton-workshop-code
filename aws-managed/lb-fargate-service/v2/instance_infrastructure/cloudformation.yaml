@@ -121,30 +121,30 @@ Resources:
               awslogs-group: '{{service.name}}/{{service_instance.name}}'
               awslogs-region: !Ref 'AWS::Region'
               awslogs-stream-prefix: 'fargate/envoy/{{service.name}}'
-        # - Name: otel-collector
-        #   Image: 'public.ecr.aws/aws-observability/aws-otel-collector:latest'
-        #   Secrets:
-        #     - Name: "AOT_CONFIG_CONTENT"
-        #       ValueFrom: "{{environment.outputs.OtelConfigName}}"
-        #   Cpu: !FindInMap [TaskSize, '{{service_instance.inputs.task_size}}', SidecarCpu]
-        #   Memory: !FindInMap [TaskSize, '{{service_instance.inputs.task_size}}', SidecarMemory]
-        #   Essential: True
-        #   PortMappings:
-        #     - ContainerPort: 4317
-        #       Protocol: "tcp"
-        #     - ContainerPort: 55681
-        #       Protocol: "tcp"
-        #     - ContainerPort: 2000
-        #       Protocol: "udp"
-        #     - ContainerPort: 8125
-        #       Protocol: "tcp"
-        #   LogConfiguration:
-        #     LogDriver: awslogs
-        #     Options:
-        #       awslogs-create-group: 'True'
-        #       awslogs-group: '{{service.name}}/{{service_instance.name}}'
-        #       awslogs-region: !Ref 'AWS::Region'
-        #       awslogs-stream-prefix: fargate/otel
+        - Name: otel-collector
+          Image: 'public.ecr.aws/aws-observability/aws-otel-collector:latest'
+          Secrets:
+            - Name: "AOT_CONFIG_CONTENT"
+              ValueFrom: "{{environment.outputs.OtelConfigName}}"
+          Cpu: !FindInMap [TaskSize, '{{service_instance.inputs.task_size}}', SidecarCpu]
+          Memory: !FindInMap [TaskSize, '{{service_instance.inputs.task_size}}', SidecarMemory]
+          Essential: True
+          PortMappings:
+            - ContainerPort: 4317
+              Protocol: "tcp"
+            - ContainerPort: 55681
+              Protocol: "tcp"
+            - ContainerPort: 2000
+              Protocol: "udp"
+            - ContainerPort: 8125
+              Protocol: "tcp"
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-create-group: 'True'
+              awslogs-group: '{{service.name}}/{{service_instance.name}}'
+              awslogs-region: !Ref 'AWS::Region'
+              awslogs-stream-prefix: fargate/otel
       ProxyConfiguration:
         ContainerName: envoy
         Type: APPMESH
