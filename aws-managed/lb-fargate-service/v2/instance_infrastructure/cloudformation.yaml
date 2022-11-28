@@ -82,8 +82,8 @@ Resources:
           DependsOn:
             - ContainerName: envoy
               Condition: HEALTHY
-            - ContainerName: otel-collector
-              Condition: START
+            # - ContainerName: otel-collector
+            #   Condition: START
         - Name: envoy
           Image: 'public.ecr.aws/appmesh/aws-appmesh-envoy:v1.19.0.0-prod'
           Cpu: !FindInMap [TaskSize, '{{service_instance.inputs.task_size}}', SidecarCpu]
