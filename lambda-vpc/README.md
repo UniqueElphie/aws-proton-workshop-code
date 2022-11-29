@@ -1,4 +1,4 @@
-## Terraform VPC + Lambda Sample
+## Terraform VPC + Lambda Sample   
 
 This directory contains two sample templates authored using Terraform. One template is an AWS Proton Environment Template that will construct a VPC. The second template is an AWS Proton Service Template that will construct a Lambda function inside of that VPC.
 
