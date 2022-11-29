@@ -1,5 +1,5 @@
 {
-    "sample-vpc-environment-template": {
+    "sample-vpc-environment": {
         "role": "arn:aws:iam::850063548647:role/ExampleGithubRole",
         "region": "ap-southeast-2",
         "state_bucket":"aws-proton-terraform-bucket-850063548647"
